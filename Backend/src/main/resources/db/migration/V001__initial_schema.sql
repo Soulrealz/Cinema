@@ -14,6 +14,7 @@ CREATE TABLE `rooms` (
 CREATE TABLE `movies` (
     `id` BIGINT(20) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `name` VARCHAR(256) NOT NULL,
+    `duration` INT NOT NULL,
     `genre` VARCHAR(50) NOT NULL,
     `year` DATE NOT NULL
 );
