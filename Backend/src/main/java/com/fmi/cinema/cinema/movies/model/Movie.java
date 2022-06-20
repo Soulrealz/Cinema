@@ -7,15 +7,11 @@ import java.util.Date;
 @Entity
 public class Movie
 {
-
 	@Id
 	private Long id;
-
 	private String name;
-
+    private Long duration;
 	private String genre;
-
-	private Long duration;
 
 	private Date year;
 
