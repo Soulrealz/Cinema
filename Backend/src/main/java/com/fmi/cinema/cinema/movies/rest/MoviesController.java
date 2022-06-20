@@ -1,6 +1,6 @@
 package com.fmi.cinema.cinema.movies.rest;
 
-import com.fmi.cinema.cinema.movies.model.MovieCoreInfo;
+import com.fmi.cinema.cinema.movies.model.Movie;
 import com.fmi.cinema.cinema.movies.service.MoviesService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,7 +21,7 @@ public class MoviesController
 	}
 
 	@GetMapping
-	public List<MovieCoreInfo> getAllMovies()
+	public List<Movie> getAllMovies()
 	{
 		return moviesService.getAllMovies();
 	}
