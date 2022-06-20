@@ -1,7 +1,7 @@
-package com.fmi.cinema.cinema.cinema.controller;
+package com.fmi.cinema.cinema.controller;
 
-import com.fmi.cinema.cinema.cinema.model.Movie;
-import com.fmi.cinema.cinema.cinema.service.MovieService;
+import com.fmi.cinema.cinema.model.Movie;
+import com.fmi.cinema.cinema.service.MovieService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

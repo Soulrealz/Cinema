@@ -1,7 +1,7 @@
-package com.fmi.cinema.cinema.cinema.service;
+package com.fmi.cinema.cinema.service;
 
-import com.fmi.cinema.cinema.cinema.model.Movie;
-import com.fmi.cinema.cinema.cinema.repository.MovieRepository;
+import com.fmi.cinema.cinema.model.Movie;
+import com.fmi.cinema.cinema.repository.MovieRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

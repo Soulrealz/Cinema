@@ -1,4 +1,4 @@
-package com.fmi.cinema.cinema.cinema.model;
+package com.fmi.cinema.cinema.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

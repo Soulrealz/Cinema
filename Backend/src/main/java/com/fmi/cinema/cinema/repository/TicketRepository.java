@@ -1,6 +1,6 @@
-package com.fmi.cinema.cinema.cinema.repository;
+package com.fmi.cinema.cinema.repository;
 
-import com.fmi.cinema.cinema.cinema.model.Ticket;
+import com.fmi.cinema.cinema.model.Ticket;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
