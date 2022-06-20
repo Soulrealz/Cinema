@@ -1,8 +1,8 @@
-package com.fmi.cinema.cinema.movies.model;
+package com.fmi.cinema.cinema.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 public class Movie
@@ -13,7 +13,7 @@ public class Movie
     private Long duration;
 	private String genre;
 
-	private Date year;
+	private LocalDate year;
 
 	public Movie()
 	{
