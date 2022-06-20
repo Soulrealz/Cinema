@@ -10,21 +10,21 @@ public class User
 {
     @Id
     private long id;
-    private final String first_name;
-    private final String last_name;
+    private final String firstName;
+    private final String lastName;
     private final String email;
     private final String password;
     public User(RegisterRequestUserDTO user, String hashedPassword)
     {
-        first_name = user.first_name();
-        last_name = user.last_name();
+        firstName = user.firstName();
+        lastName = user.lastName();
         email = user.email();
         password = hashedPassword;
     }
 
     public long getId() { return id; }
-    public String getFirst_name() { return first_name; }
-    public String getLast_name() { return last_name; }
+    public String getFirstName() { return firstName; }
+    public String getLastName() { return lastName; }
     public String getEmail() { return email; }
     public String getPassword() { return password; }
 }

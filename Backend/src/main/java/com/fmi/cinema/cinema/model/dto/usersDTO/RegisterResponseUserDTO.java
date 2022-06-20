@@ -7,21 +7,21 @@ import org.springframework.stereotype.Component;
 public class RegisterResponseUserDTO
 {
     private final long id;
-    private final String first_name;
-    private final String last_name;
+    private final String firstName;
+    private final String lastName;
     private final String email;
 
 
     public RegisterResponseUserDTO(final User user)
     {
         id = user.getId();
-        first_name = user.getFirst_name();
-        last_name = user.getLast_name();
+        firstName = user.getFirstName();
+        lastName = user.getLastName();
         email = user.getEmail();
     }
 
     public long getId() { return id; }
-    public String getFirst_name() { return first_name; }
-    public String getLast_name() { return last_name; }
+    public String getFirstName() { return firstName; }
+    public String getLastName() { return lastName; }
     public String getEmail() { return email; }
 }

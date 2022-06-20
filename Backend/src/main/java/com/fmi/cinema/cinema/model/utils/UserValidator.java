@@ -26,16 +26,6 @@ public class UserValidator {
         return matcher.find();
     }
 
-    // Method for checking if the city is valid
-    public static boolean validateCity(String city) {
-        return city.matches("[a-zA-Z]+");
-    }
-
-    // Method for checking if the age are valid
-    public static boolean validateAge(int age){
-        return age > 0 && age <= 100;
-    }
-
     // Method for checking if the password confirmation is correct
     public static boolean validatePasswordConfirmation(String password, String confirmPassword) {
         return password.equals(confirmPassword);

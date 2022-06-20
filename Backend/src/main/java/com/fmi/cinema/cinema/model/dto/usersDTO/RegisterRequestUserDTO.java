@@ -5,15 +5,15 @@ import com.fmi.cinema.cinema.model.utils.UserValidator;
 import org.springframework.stereotype.Component;
 
 @Component
-public record RegisterRequestUserDTO (String first_name, String last_name, String email, String password, String confirmPassword)
+public record RegisterRequestUserDTO (String firstName, String lastName, String email, String password, String confirmPassword)
 {
     public void validateUserInformation()
     {
-        if(!UserValidator.validateName(first_name))
+        if(!UserValidator.validateName(firstName))
         {
             throw new BadRequestException("You have entered invalid first name.");
         }
-        if(!UserValidator.validateName(last_name))
+        if(!UserValidator.validateName(lastName))
         {
             throw new BadRequestException("You have entered invalid last name.");
         }
