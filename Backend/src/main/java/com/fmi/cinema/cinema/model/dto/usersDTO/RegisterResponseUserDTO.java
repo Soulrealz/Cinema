@@ -1,9 +1,7 @@
 package com.fmi.cinema.cinema.model.dto.usersDTO;
 
 import com.fmi.cinema.cinema.model.User;
-import org.springframework.stereotype.Component;
 
-@Component
 public class RegisterResponseUserDTO
 {
     private final long id;

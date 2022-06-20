@@ -2,9 +2,7 @@ package com.fmi.cinema.cinema.model.dto.usersDTO;
 
 import com.fmi.cinema.cinema.exceptions.BadRequestException;
 import com.fmi.cinema.cinema.model.utils.UserValidator;
-import org.springframework.stereotype.Component;
 
-@Component
 public record RegisterRequestUserDTO (String firstName, String lastName, String email, String password, String confirmPassword)
 {
     public void validateUserInformation()
