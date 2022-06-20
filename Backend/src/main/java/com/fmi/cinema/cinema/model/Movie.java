@@ -7,10 +7,14 @@ import java.time.LocalDate;
 @Entity
 public class Movie
 {
+
 	@Id
 	private Long id;
+
 	private String name;
-    private Long duration;
+
+    private Integer duration;
+
 	private String genre;
 
 	private LocalDate year;
@@ -24,9 +28,29 @@ public class Movie
 		return id;
 	}
 
+	public void setId(Long id)
+	{
+		this.id = id;
+	}
+
 	public String getName()
 	{
 		return name;
+	}
+
+	public void setName(String name)
+	{
+		this.name = name;
+	}
+
+	public Integer getDuration()
+	{
+		return duration;
+	}
+
+	public void setDuration(Integer duration)
+	{
+		this.duration = duration;
 	}
 
 	public String getGenre()
@@ -34,8 +58,18 @@ public class Movie
 		return genre;
 	}
 
-	public Long getDuration()
+	public void setGenre(String genre)
 	{
-		return duration;
+		this.genre = genre;
+	}
+
+	public LocalDate getYear()
+	{
+		return year;
+	}
+
+	public void setYear(LocalDate year)
+	{
+		this.year = year;
 	}
 }
