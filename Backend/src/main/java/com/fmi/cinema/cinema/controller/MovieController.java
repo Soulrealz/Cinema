@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -35,13 +36,26 @@ public class MovieController {
         return movieService.findById(id);
     }
 
+    @GetMapping("/search")
+    public Page<MovieDto> getAllMoviesFound(
+            @RequestParam final String keyword,
+            @RequestParam final Integer page,
+            @RequestParam final Integer size) {
+
+        return movieService.findAll(keyword, PageRequest.of(page, size));
+    }
+
     @GetMapping
-    public Page<MovieDto> getAllMovies(final int pageNumber,
-                                       final int pageSize, final String sortBy, final String sort) {
+    public Page<MovieDto> getAllMovies(
+            @RequestParam final Integer page,
+            @RequestParam final Integer size,
+            @RequestParam final String sortBy,
+            @RequestParam final String sort) {
+
         return movieService.findAll(
                 PageRequest.of(
-                        pageNumber,
-                        pageSize,
+                        page,
+                        size,
                         sort.equalsIgnoreCase("descending") ?
                                 Sort.by(sortBy).descending() : Sort.by(sortBy).ascending()));
     }

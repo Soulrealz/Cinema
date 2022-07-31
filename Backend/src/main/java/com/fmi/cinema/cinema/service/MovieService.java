@@ -30,6 +30,11 @@ public class MovieService {
         return movieDtoMapper.convertToDto(savedMovie);
     }
 
+    public Page<MovieDto> findAll(final String keyword, final Pageable pageable) {
+        return movieRepository.findAll(keyword, pageable).map(movieDtoMapper::convertToDto);
+    }
+
+
     public Page<MovieDto> findAll(final Pageable pageable) {
         return movieRepository.findAll(pageable).map(movieDtoMapper::convertToDto);
     }
@@ -47,7 +52,7 @@ public class MovieService {
 
     public MovieDto updateMovie(final MovieDto movieDto) {
         final Movie oldMovie = movieRepository.findById(movieDto.getId()).orElseThrow(() ->
-                new RuntimeException("No movie found to update!"));
+                new NoSuchElementException("No movie found to update!"));
 
         final Movie updatedMovie = movieDtoMapper.convertToEntity(movieDto);
         final Movie savedMovie = movieRepository.save(updatedMovie);
