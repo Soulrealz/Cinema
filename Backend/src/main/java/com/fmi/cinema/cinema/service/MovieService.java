@@ -6,9 +6,10 @@ import com.fmi.cinema.cinema.model.Movie;
 import com.fmi.cinema.cinema.model.dto.moviedto.MovieDto;
 import com.fmi.cinema.cinema.repository.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.NoSuchElementException;
 
 @Service
@@ -29,8 +30,8 @@ public class MovieService {
         return movieDtoMapper.convertToDto(savedMovie);
     }
 
-    public List<MovieDto> findAll() {
-        return movieDtoMapper.convertListToDtos(movieRepository.findAll());
+    public Page<MovieDto> findAll(Pageable pageable) {
+        return movieRepository.findAll(pageable).map(movieDtoMapper::convertToDto);
     }
 
     public MovieDto addMovie(final MovieDto movieDto) {
