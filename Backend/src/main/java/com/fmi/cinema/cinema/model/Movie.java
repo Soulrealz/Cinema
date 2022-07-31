@@ -34,26 +34,6 @@ public class Movie
 		this.year = year;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public void setDuration(Long duration) {
-		this.duration = duration;
-	}
-
-	public void setGenre(String genre) {
-		this.genre = genre;
-	}
-
-	public void setYear(LocalDate year) {
-		this.year = year;
-	}
-
 	public Long getId() {
 		return id;
 	}

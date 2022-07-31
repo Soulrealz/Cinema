@@ -45,31 +45,6 @@ public class Ticket {
         this.seatNumber = seatNumber;
         this.boughtOn = boughtOn;
     }
-
-    public void setTicketId(Long ticketId) {
-        this.ticketId = ticketId;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public void setMovie(Movie movie) {
-        this.movie = movie;
-    }
-
-    public void setRowNumber(int rowNumber) {
-        this.rowNumber = rowNumber;
-    }
-
-    public void setSeatNumber(int seatNumber) {
-        this.seatNumber = seatNumber;
-    }
-
-    public void setBoughtOn(LocalDateTime boughtOn) {
-        this.boughtOn = boughtOn;
-    }
-
     public Long getTicketId() {
         return ticketId;
     }
