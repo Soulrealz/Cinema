@@ -51,7 +51,7 @@ public class MovieService {
     }
 
     public MovieDto updateMovie(final MovieDto movieDto) {
-        final Movie oldMovie = movieRepository.findById(movieDto.getId()).orElseThrow(() ->
+        final Movie oldMovie = movieRepository.findById(movieDto.id()).orElseThrow(() ->
                 new NoSuchElementException("No movie found to update!"));
 
         final Movie updatedMovie = movieDtoMapper.convertToEntity(movieDto);

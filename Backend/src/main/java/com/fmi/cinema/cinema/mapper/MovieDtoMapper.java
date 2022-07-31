@@ -9,11 +9,11 @@ public class MovieDtoMapper {
 
     public Movie convertToEntity(final MovieDto movieDto) {
         return new Movie(
-                movieDto.getId(),
-                movieDto.getName(),
-                movieDto.getDuration(),
-                movieDto.getGenre(),
-                movieDto.getYear());
+                movieDto.id(),
+                movieDto.name(),
+                movieDto.duration(),
+                movieDto.genre(),
+                movieDto.year());
     }
 
     public MovieDto convertToDto(final Movie movie) {
