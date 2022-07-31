@@ -22,14 +22,14 @@ public class GlobalRestExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(NoSuchElementException.class)
     public ResponseEntity<Object> handleElementNotFound(NoSuchElementException e) {
-        String responseBody = String.format(ERROR_MESSAGE, e.getMessage());
+        final String responseBody = String.format(ERROR_MESSAGE, e.getMessage());
         return new ResponseEntity<>(responseBody, HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(MovieAlreadyExistsException.class)
     public ResponseEntity<Object> handleMovieAlreadyExists(MovieAlreadyExistsException e) {
-        String responseBody = String.format(ERROR_MESSAGE, e.getMessage());
-        return new ResponseEntity<>(responseBody, HttpStatus.NOT_FOUND);
+        final String responseBody = String.format(ERROR_MESSAGE, e.getMessage());
+        return new ResponseEntity<>(responseBody, HttpStatus.CONFLICT);
     }
 
     @Override
