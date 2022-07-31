@@ -4,7 +4,8 @@ import com.fmi.cinema.cinema.model.dto.moviedto.MovieDto;
 import com.fmi.cinema.cinema.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,7 +26,7 @@ public class MovieController {
     private final MovieService movieService;
 
     @Autowired
-    public MovieController(MovieService movieService) {
+    public MovieController(final MovieService movieService) {
         this.movieService = movieService;
     }
 
@@ -35,8 +36,14 @@ public class MovieController {
     }
 
     @GetMapping
-    public Page<MovieDto> getAllMovies(Pageable pageable) {
-        return movieService.findAll(pageable);
+    public Page<MovieDto> getAllMovies(final int pageNumber,
+                                       final int pageSize, final String sortBy, final String sort) {
+        return movieService.findAll(
+                PageRequest.of(
+                        pageNumber,
+                        pageSize,
+                        sort.equalsIgnoreCase("descending") ?
+                                Sort.by(sortBy).descending() : Sort.by(sortBy).ascending()));
     }
 
     @PostMapping

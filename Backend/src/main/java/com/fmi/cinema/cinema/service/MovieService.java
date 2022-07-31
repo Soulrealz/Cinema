@@ -30,7 +30,7 @@ public class MovieService {
         return movieDtoMapper.convertToDto(savedMovie);
     }
 
-    public Page<MovieDto> findAll(Pageable pageable) {
+    public Page<MovieDto> findAll(final Pageable pageable) {
         return movieRepository.findAll(pageable).map(movieDtoMapper::convertToDto);
     }
 

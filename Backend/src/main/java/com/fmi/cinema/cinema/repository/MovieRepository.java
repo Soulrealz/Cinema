@@ -12,7 +12,7 @@ import java.util.Optional;
 public interface MovieRepository extends JpaRepository<Movie, Long> {
     Optional<Movie> findById(final Long id);
 
-    Optional<Movie> findByName(String name);
+    Optional<Movie> findByName(final String name);
 
-    Page<Movie> findAll(Pageable pageable);
+    Page<Movie> findAll(final Pageable pageable);
 }
