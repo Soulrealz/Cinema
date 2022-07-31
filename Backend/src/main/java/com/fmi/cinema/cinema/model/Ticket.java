@@ -1,26 +1,31 @@
 package com.fmi.cinema.cinema.model;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import java.time.LocalDateTime;
 
 @Entity
+@Table(name = "tickets")
 public class Ticket {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long ticketId;
 
-    @Column
-    private Long userId;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
-    @Column
-    private Long movieId;
-
-    @Column
-    private Long roomId;
+    @ManyToOne
+    @JoinColumn(name = "movie_id")
+    private Movie movie;
 
     @Column
     private int rowNumber;
@@ -28,19 +33,40 @@ public class Ticket {
     @Column
     private int seatNumber;
 
-    @Column
+    @CreationTimestamp
     private LocalDateTime boughtOn;
 
-    public Ticket() {
-    }
+    public Ticket() {}
 
-    public Ticket(Long ticketId, Long userId, Long movieId, Long roomId, int rowNumber, int seatNumber, LocalDateTime boughtOn) {
-        this.ticketId = ticketId;
-        this.userId = userId;
-        this.movieId = movieId;
-        this.roomId = roomId;
+    public Ticket(User user, Movie movie, int rowNumber, int seatNumber, LocalDateTime boughtOn) {
+        this.user = user;
+        this.movie = movie;
         this.rowNumber = rowNumber;
         this.seatNumber = seatNumber;
+        this.boughtOn = boughtOn;
+    }
+
+    public void setTicketId(Long ticketId) {
+        this.ticketId = ticketId;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public void setMovie(Movie movie) {
+        this.movie = movie;
+    }
+
+    public void setRowNumber(int rowNumber) {
+        this.rowNumber = rowNumber;
+    }
+
+    public void setSeatNumber(int seatNumber) {
+        this.seatNumber = seatNumber;
+    }
+
+    public void setBoughtOn(LocalDateTime boughtOn) {
         this.boughtOn = boughtOn;
     }
 
@@ -48,16 +74,12 @@ public class Ticket {
         return ticketId;
     }
 
-    public Long getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public Long getMovieId() {
-        return movieId;
-    }
-
-    public Long getRoomId() {
-        return roomId;
+    public Movie getMovie() {
+        return movie;
     }
 
     public int getRowNumber() {
