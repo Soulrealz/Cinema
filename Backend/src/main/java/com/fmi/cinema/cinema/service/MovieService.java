@@ -23,8 +23,8 @@ public class MovieService {
         this.movieDtoMapper = movieDtoMapper;
     }
 
-    public MovieDto findById(final Long id) {
-        final Movie savedMovie = movieRepository.findById(id).orElseThrow(() ->
+    public MovieDto findById(final Long requestId) {
+        final Movie savedMovie = movieRepository.findById(requestId).orElseThrow(() ->
                 new NoSuchElementException("No movie found!"));
 
         return movieDtoMapper.convertToDto(savedMovie);
@@ -39,31 +39,31 @@ public class MovieService {
         return movieRepository.findAll(pageable).map(movieDtoMapper::convertToDto);
     }
 
-    public MovieDto addMovie(final MovieDto movieDto) {
-        final Movie movie = movieDtoMapper.convertToEntity(movieDto);
-
-        if (movieRepository.findByName(movie.getName()).isPresent()) {
+    public MovieDto addMovie(final MovieDto request) {
+        if (movieRepository.findByName(request.name()).isPresent()) {
             throw new MovieAlreadyExistsException("Movie with that name already exists!");
         }
 
-        final Movie savedMovie = movieRepository.save(movie);
+        final Movie movieToSave = movieDtoMapper.convertToEntity(request);
+        final Movie savedMovie = movieRepository.save(movieToSave);
+
         return movieDtoMapper.convertToDto(savedMovie);
     }
 
-    public MovieDto updateMovie(final MovieDto movieDto) {
-        final Movie oldMovie = movieRepository.findById(movieDto.id()).orElseThrow(() ->
+    public MovieDto updateMovie(final MovieDto request) {
+        movieRepository.findById(request.id()).orElseThrow(() ->
                 new NoSuchElementException("No movie found to update!"));
 
-        final Movie updatedMovie = movieDtoMapper.convertToEntity(movieDto);
-        final Movie savedMovie = movieRepository.save(updatedMovie);
+        final Movie updatedMovieToSave = movieDtoMapper.convertToEntity(request);
+        final Movie savedMovie = movieRepository.save(updatedMovieToSave);
 
         return movieDtoMapper.convertToDto(savedMovie);
     }
 
-    public void removeMovie(final Long id) {
-        final Movie savedMovie = movieRepository.findById(id).orElseThrow(() ->
+    public void removeMovie(final Long requestId) {
+        movieRepository.findById(requestId).orElseThrow(() ->
                 new NoSuchElementException("No movie found to delete!"));
 
-        movieRepository.deleteById(id);
+        movieRepository.deleteById(requestId);
     }
 }
