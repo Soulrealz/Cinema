@@ -33,9 +33,19 @@ public class SessionManager
 			return Optional.empty();
 		}
 
-		final int userId = (int) session.getAttribute(X_CINEMA_USER);
+		final long userId = (long) session.getAttribute(X_CINEMA_USER);
 
 		return Optional.of(usersRepository.findById(userId)
 										  .orElseThrow(() -> new BadRequestException("Customer not found")));
+	}
+
+	public long getUserIdFromSession(final HttpSession session)
+	{
+		return (long) session.getAttribute(X_CINEMA_USER);
+	}
+
+	public void logout(final HttpSession session)
+	{
+		session.invalidate();
 	}
 }
