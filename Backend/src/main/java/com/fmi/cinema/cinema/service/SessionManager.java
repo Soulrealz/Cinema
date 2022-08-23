@@ -43,4 +43,9 @@ public class SessionManager
 	{
 		return (long) session.getAttribute(X_CINEMA_USER);
 	}
+
+	public void logout(final HttpSession session)
+	{
+		session.invalidate();
+	}
 }

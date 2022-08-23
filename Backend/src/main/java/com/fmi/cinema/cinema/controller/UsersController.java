@@ -38,6 +38,12 @@ public class UsersController
         return usersService.login(loginRequest, session);
     }
 
+    @PostMapping("/logout")
+    public void logout(final HttpSession session)
+    {
+        usersService.logout(session);
+    }
+
     @GetMapping("/info")
     public void getUserInfo(final HttpSession httpSession)
     {

@@ -69,6 +69,11 @@ public class UsersService
         return new LoginResponseDTO(loginRequestDTO.email(), isLoginSuccessful);
     }
 
+    public void logout(final HttpSession session)
+    {
+        sessionManager.logout(session);
+    }
+
     public UserInfoResponseDTO getUserInfo(final HttpSession session)
     {
         final long userId = sessionManager.getUserIdFromSession(session);
