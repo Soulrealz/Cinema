@@ -2,7 +2,11 @@ package com.fmi.cinema.cinema.model;
 
 import com.fmi.cinema.cinema.model.dto.usersDTO.RegisterRequestUserDTO;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "users")
