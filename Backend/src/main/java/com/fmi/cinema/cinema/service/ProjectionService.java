@@ -1,7 +1,9 @@
 package com.fmi.cinema.cinema.service;
 
 import com.fmi.cinema.cinema.repository.ProjectionRepository;
+import org.springframework.stereotype.Service;
 
+@Service
 public class ProjectionService
 {
 

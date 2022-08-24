@@ -2,16 +2,14 @@ package com.fmi.cinema.cinema.model;
 
 import com.fmi.cinema.cinema.model.dto.usersDTO.RegisterRequestUserDTO;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "users")
 public class User
 {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private final String firstName;
     private final String lastName;
