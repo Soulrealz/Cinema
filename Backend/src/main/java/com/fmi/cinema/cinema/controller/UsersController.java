@@ -5,6 +5,7 @@ import com.fmi.cinema.cinema.model.dto.usersDTO.LoginResponseDTO;
 import com.fmi.cinema.cinema.model.dto.usersDTO.RegisterRequestUserDTO;
 import com.fmi.cinema.cinema.model.dto.usersDTO.RegisterResponseUserDTO;
 import com.fmi.cinema.cinema.service.UsersService;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -35,5 +36,17 @@ public class UsersController
                                   final HttpSession session)
     {
         return usersService.login(loginRequest, session);
+    }
+
+    @PostMapping("/logout")
+    public void logout(final HttpSession session)
+    {
+        usersService.logout(session);
+    }
+
+    @GetMapping("/info")
+    public void getUserInfo(final HttpSession httpSession)
+    {
+        usersService.getUserInfo(httpSession);
     }
 }
