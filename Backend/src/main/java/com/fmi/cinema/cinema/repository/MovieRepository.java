@@ -16,8 +16,10 @@ public interface MovieRepository extends JpaRepository<Movie, Long> {
 
     Optional<Movie> findByName(final String name);
 
-    @Query("SELECT m FROM Movie m WHERE CONCAT(m.name, ' ', m.duration, ' ', m.genre, ' ', m.year) " +
-            "LIKE %:keyword% ORDER BY m.name ASC")
+    @Query("""
+           SELECT m FROM Movie m WHERE CONCAT(m.name, ' ', m.duration, ' ', m.genre, ' ', m.year)
+           LIKE %:keyword% ORDER BY m.name ASC
+           """)
     Page<Movie> findAll(@Param("keyword") final String keyword, final Pageable pageable);
 
     Page<Movie> findAll(final Pageable pageable);

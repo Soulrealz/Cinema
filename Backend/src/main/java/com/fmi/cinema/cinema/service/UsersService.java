@@ -21,7 +21,7 @@ public class UsersService
 
     public RegisterResponseUserDTO register(RegisterRequestUserDTO userDTO)
     {
-        if (usersRepository.findByEmail(userDTO.email()).isEmpty())
+        if (usersRepository.findByEmail(userDTO.email()).isPresent())
         {
             throw new BadRequestException("User with this email already exists.");
         }
