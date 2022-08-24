@@ -25,7 +25,7 @@ public class UsersController
         usersService = service;
     }
 
-    @PutMapping("/register")
+    @PostMapping("/register")
     public RegisterResponseUserDTO register(@RequestBody RegisterRequestUserDTO userDTO)
     {
         return usersService.register(userDTO);
