@@ -1,5 +1,6 @@
 package com.fmi.cinema.cinema.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,19 +16,27 @@ public class Seat {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long seatId;
 
+    @Column
+    private boolean isTaken;
+
     @ManyToOne
     @JoinColumn(name="id")
     private Room room;
 
     public Seat() {}
 
-    public Seat(Long seatId, Room room) {
+    public Seat(Long seatId, boolean isTaken, Room room) {
         this.seatId = seatId;
+        this.isTaken = isTaken;
         this.room = room;
     }
 
     public Long getSeatId() {
         return seatId;
+    }
+
+    public boolean isTaken() {
+        return isTaken;
     }
 
     public Room getRoom() {
