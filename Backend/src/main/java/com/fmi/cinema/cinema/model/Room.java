@@ -15,7 +15,7 @@ public class Room {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany(mappedBy="cart")
+    @OneToMany(mappedBy="room")
     private List<Seat> seats;
 
 
