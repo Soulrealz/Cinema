@@ -1,6 +1,7 @@
 package com.fmi.cinema.cinema.model;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "projections")
@@ -10,18 +11,22 @@ public class Projection {
     private Long id;
 
     @Column
-    private Long room_id;
+    private Long roomId;
 
     @Column
-    private Long movie_id;
+    private Long movieId;
+
+    @Column
+    private LocalDateTime projectionTime;
 
     public Projection() {}
 
-    public Projection(Long id, Long room_id, Long movie_id)
+    public Projection(Long id, Long room_id, Long movie_id, LocalDateTime projection_time)
     {
         this.id = id;
-        this.room_id = room_id;
-        this.movie_id = movie_id;
+        this.roomId = room_id;
+        this.movieId = movie_id;
+        this.projectionTime = projection_time; //1-1, 1-2, 2-3, 2-4
     }
 
     public Long getId()
@@ -29,13 +34,18 @@ public class Projection {
         return id;
     }
 
-    public Long getRoom_id()
+    public Long getRoomId()
     {
-        return room_id;
+        return roomId;
     }
 
-    public Long getMovie_id()
+    public Long getMovieId()
     {
-        return movie_id;
+        return movieId;
+    }
+
+    public LocalDateTime projectionTime()
+    {
+        return projectionTime;
     }
 }

@@ -28,9 +28,6 @@ public class Ticket {
     private Movie movie;
 
     @Column
-    private int rowNumber;
-
-    @Column
     private int seatNumber;
 
     @CreationTimestamp
@@ -38,10 +35,9 @@ public class Ticket {
 
     public Ticket() {}
 
-    public Ticket(User user, Movie movie, int rowNumber, int seatNumber, LocalDateTime boughtOn) {
+    public Ticket(User user, Movie movie, int seatNumber, LocalDateTime boughtOn) {
         this.user = user;
         this.movie = movie;
-        this.rowNumber = rowNumber;
         this.seatNumber = seatNumber;
         this.boughtOn = boughtOn;
     }
@@ -55,10 +51,6 @@ public class Ticket {
 
     public Movie getMovie() {
         return movie;
-    }
-
-    public int getRowNumber() {
-        return rowNumber;
     }
 
     public int getSeatNumber() {

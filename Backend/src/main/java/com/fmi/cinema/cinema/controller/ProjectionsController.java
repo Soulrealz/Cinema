@@ -15,4 +15,9 @@ public class ProjectionsController {
     public ProjectionsController(final ProjectionService projectionService) {
         this.projectionService = projectionService;
     }
+
+    //get for today
+    //post create new projection
+    //delete projection
+
 }
