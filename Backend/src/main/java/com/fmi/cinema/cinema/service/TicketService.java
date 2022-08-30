@@ -1,11 +1,14 @@
 package com.fmi.cinema.cinema.service;
 
+import com.fmi.cinema.cinema.model.Room;
+import com.fmi.cinema.cinema.model.Seat;
 import com.fmi.cinema.cinema.model.Ticket;
 import com.fmi.cinema.cinema.model.User;
 import com.fmi.cinema.cinema.model.dto.ticketsDTO.TicketInfoResponseDTO;
 import com.fmi.cinema.cinema.repository.TicketRepository;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -14,10 +17,14 @@ public class TicketService
 {
 
 	private final TicketRepository ticketRepository;
+	private final UsersService usersService;
+	private final SessionManager sessionManager;
 
-	public TicketService(final TicketRepository ticketRepository)
+	public TicketService(final TicketRepository tr, final UsersService us, final SessionManager sm)
 	{
-		this.ticketRepository = ticketRepository;
+		ticketRepository = tr;
+		usersService = us;
+		sessionManager = sm;
 	}
 
 	public List<TicketInfoResponseDTO> getUserTicketsInfo(final User user)
@@ -36,10 +43,13 @@ public class TicketService
 
 	private static TicketInfoResponseDTO getTicketInfo(final Ticket ticket)
 	{
-		return new TicketInfoResponseDTO(ticket.getUser().getFirstName(),
-										 ticket.getMovie().getName(),
-										 ticket.getRowNumber(),
-										 ticket.getSeatNumber(),
-										 ticket.getBoughtOn());
+		return null;
+	}
+
+	public TicketInfoResponseDTO createNewTicket(final HttpSession session)
+	{//give seat id and room id
+		User user = usersService.getSessionUser(session);
+		//Ticket tkt = new Ticket(user, )
+		return null;
 	}
 }

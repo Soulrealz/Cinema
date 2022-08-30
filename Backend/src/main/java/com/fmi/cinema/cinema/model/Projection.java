@@ -1,6 +1,11 @@
 package com.fmi.cinema.cinema.model;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.time.LocalDateTime;
 
 @Entity
@@ -26,7 +31,7 @@ public class Projection {
         this.id = id;
         this.roomId = room_id;
         this.movieId = movie_id;
-        this.projectionTime = projection_time; //1-1, 1-2, 2-3, 2-4
+        this.projectionTime = projection_time;
     }
 
     public Long getId()

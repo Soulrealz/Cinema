@@ -1,7 +1,6 @@
 package com.fmi.cinema.cinema.service;
 
 import com.fmi.cinema.cinema.exceptions.BadRequestException;
-import com.fmi.cinema.cinema.model.Ticket;
 import com.fmi.cinema.cinema.model.User;
 import com.fmi.cinema.cinema.model.dto.ticketsDTO.TicketInfoResponseDTO;
 import com.fmi.cinema.cinema.model.dto.usersDTO.LoginRequestDTO;
@@ -21,19 +20,14 @@ import java.util.List;
 public class UsersService
 {
     private final UsersRepository usersRepository;
-
-    private final TicketService ticketService;
-
     private final SessionManager sessionManager;
 
     private final PasswordEncoder encoder;
 
     public UsersService(final UsersRepository usersRepository,
-                        final TicketService ticketService,
                         final SessionManager sessionManager)
     {
         this.usersRepository = usersRepository;
-        this.ticketService = ticketService;
         this.sessionManager = sessionManager;
         this.encoder = new BCryptPasswordEncoder();
     }
@@ -79,12 +73,12 @@ public class UsersService
         final long userId = sessionManager.getUserIdFromSession(session);
 
         final User user = usersRepository.getById(userId);
-        final List<TicketInfoResponseDTO> userTickets = ticketService.getUserTicketsInfo(user);
+        final List<TicketInfoResponseDTO> userTickets = null;
 
         return buildUserInfo(user, userTickets);
     }
 
-    private void validateSession(final HttpSession session)
+    public void validateSession(final HttpSession session)
     {
         if (sessionManager.checkIfThereIsLoggedUser(session).isEmpty())
         {
@@ -92,6 +86,12 @@ public class UsersService
         }
 
         throw new BadRequestException("User already logged in.");
+    }
+
+    public User getSessionUser(HttpSession session)
+    {
+        validateSession(session);
+        return usersRepository.getById(sessionManager.getUserIdFromSession(session));
     }
 
     private boolean isLoginSuccessful(final String requestPassword,
