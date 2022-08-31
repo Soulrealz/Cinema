@@ -22,13 +22,19 @@ create table `projections` (
 `id` bigint(20) not null auto_increment primary key,
 `room_id` bigint(20) not null,
 `movie_id` bigint(20) not null,
-`projection_time` datetime not null
+`projection_time` datetime not null,
+CONSTRAINT `FK_projections_room_id`
+FOREIGN KEY (`room_id`) REFERENCES `rooms` (`id`) ON UPDATE NO ACTION ON DELETE CASCADE,
+CONSTRAINT `FK_projections_movie_id`
+FOREIGN KEY (`movie_id`) REFERENCES `movies` (`id`) ON UPDATE NO ACTION ON DELETE CASCADE
 );
 
 create table `seats` (
 `id` bigint(20) not null auto_increment primary key,
 `is_taken` boolean not null,
-`room_id` bigint(20) not null
+`room_id` bigint(20) not null,
+CONSTRAINT `FK_seats_room_id`
+FOREIGN KEY (`room_id`) REFERENCES `rooms` (`id`) ON UPDATE NO ACTION ON DELETE CASCADE
 );
 
 CREATE TABLE `tickets` (

@@ -46,6 +46,11 @@ public class Ticket {
         return ticketId;
     }
 
+    public Seat getSeat()
+    {
+        return seat;
+    }
+
     public User getUser() {
         return user;
     }

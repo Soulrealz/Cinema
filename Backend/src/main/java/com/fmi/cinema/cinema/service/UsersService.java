@@ -13,12 +13,14 @@ import com.fmi.cinema.cinema.model.dto.usersDTO.RegisterResponseUserDTO;
 import com.fmi.cinema.cinema.model.dto.usersDTO.UserInfoResponseDTO;
 import com.fmi.cinema.cinema.repository.MovieRepository;
 import com.fmi.cinema.cinema.repository.ProjectionRepository;
+import com.fmi.cinema.cinema.repository.RoomRepository;
 import com.fmi.cinema.cinema.repository.SeatRepository;
 import com.fmi.cinema.cinema.repository.TicketRepository;
 import com.fmi.cinema.cinema.repository.UsersRepository;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.servlet.http.HttpSession;
 import java.time.LocalDateTime;
@@ -33,6 +35,7 @@ public class UsersService
     private final ProjectionRepository projectionRepository;
     private final SeatRepository seatRepository;
     private final MovieRepository movieRepository;
+    private final RoomRepository roomRepository;
     private final SessionManager sessionManager;
 
     private final TicketService ticketService;
@@ -45,7 +48,8 @@ public class UsersService
                         final TicketRepository tr,
                         final ProjectionRepository pr,
                         final SeatRepository sr,
-                        final MovieRepository mr)
+                        final MovieRepository mr,
+                        final RoomRepository rr)
     {
         this.usersRepository = usersRepository;
         this.sessionManager = sessionManager;
@@ -54,6 +58,7 @@ public class UsersService
         projectionRepository = pr;
         seatRepository = sr;
         movieRepository = mr;
+        roomRepository = rr;
         this.encoder = new BCryptPasswordEncoder();
     }
 
@@ -157,5 +162,22 @@ public class UsersService
 
         throw new BadRequestException("Invalid IDs.");
     }
+
+    public Optional<TicketInfoResponseDTO> getUserTicket(final long ticketId)
+    {
+        Optional<Ticket> tkt = ticketRepository.findById(ticketId);
+        if (tkt.isEmpty())
+        {
+            return Optional.empty();
+        }
+        Ticket ticket = tkt.get();
+        Projection proj = ticket.getProjection();
+        return Optional.of(new TicketInfoResponseDTO(ticket.getUser().getFirstName(),
+                movieRepository.findById(proj.getMovieId()).get().getName(),
+                ticket.getBoughtOn(),
+                ticket.getSeat().getSeatId(),
+                proj.getId()));
+    }
+
 
 }

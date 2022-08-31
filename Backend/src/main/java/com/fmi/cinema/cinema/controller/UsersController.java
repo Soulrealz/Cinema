@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/users")
@@ -56,4 +57,11 @@ public class UsersController
     {
         return usersService.createNewTicket(session, seatId, projectionId);
     }
+
+    @GetMapping("/getTicket/{ticketId}")
+    public Optional<TicketInfoResponseDTO> getTicket(final @PathVariable long ticketId)
+    {
+        return usersService.getUserTicket(ticketId);
+    }
+
 }

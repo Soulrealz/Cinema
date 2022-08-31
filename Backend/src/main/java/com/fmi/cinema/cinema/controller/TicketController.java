@@ -20,8 +20,6 @@ public class TicketController
     {
         ticketService = ts;
     }
-    //post create new ticket
-    //get all tickets by user id
     //get one ticket by id
 
 }
