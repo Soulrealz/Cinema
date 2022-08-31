@@ -52,7 +52,7 @@ public class UsersService
     public LoginResponseDTO login(final LoginRequestDTO loginRequestDTO,
                                   final HttpSession session)
     {
-         validateSession(session);
+         validateSessionOnLogin(session);
 
         final User user = usersRepository.findByEmail(loginRequestDTO.email())
                                                    .orElseThrow(() -> new BadRequestException("User with this email already exists."));
@@ -78,7 +78,7 @@ public class UsersService
         return buildUserInfo(user, userTickets);
     }
 
-    public void validateSession(final HttpSession session)
+    public void validateSessionOnLogin(final HttpSession session)
     {
         if (sessionManager.checkIfThereIsLoggedUser(session).isEmpty())
         {
@@ -90,7 +90,7 @@ public class UsersService
 
     public User getSessionUser(HttpSession session)
     {
-        validateSession(session);
+        validateSessionOnLogin(session);
         return usersRepository.getById(sessionManager.getUserIdFromSession(session));
     }
 

@@ -1,7 +1,5 @@
 package com.fmi.cinema.cinema.service;
 
-import com.fmi.cinema.cinema.model.Room;
-import com.fmi.cinema.cinema.model.Seat;
 import com.fmi.cinema.cinema.model.Ticket;
 import com.fmi.cinema.cinema.model.User;
 import com.fmi.cinema.cinema.model.dto.ticketsDTO.TicketInfoResponseDTO;

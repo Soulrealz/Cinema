@@ -1,5 +1,6 @@
 package com.fmi.cinema.cinema.controller;
 
+import com.fmi.cinema.cinema.model.Movie;
 import com.fmi.cinema.cinema.model.dto.moviedto.MovieDto;
 import com.fmi.cinema.cinema.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,10 +20,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/movies")
+@CrossOrigin(origins = "http://localhost:3000")
 public class MovieController {
 
     private final MovieService movieService;
@@ -29,6 +34,12 @@ public class MovieController {
     @Autowired
     public MovieController(final MovieService movieService) {
         this.movieService = movieService;
+    }
+
+
+    @GetMapping
+    public List<Movie> getAllMovies() {
+        return movieService.findAll();
     }
 
     @GetMapping("/{id}")
@@ -45,7 +56,7 @@ public class MovieController {
         return movieService.findAll(keyword, PageRequest.of(page, size));
     }
 
-    @GetMapping
+    @GetMapping("/all")
     public Page<MovieDto> getAllMovies(
             @RequestParam final Integer page,
             @RequestParam final Integer size,
@@ -62,17 +73,17 @@ public class MovieController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public MovieDto addMovie(@Valid @RequestBody final MovieDto requestDto) {
-        return movieService.addMovie(requestDto);
+    public MovieDto addMovie(@Valid @RequestBody final MovieDto requestDto, final HttpSession session) {
+        return movieService.addMovie(requestDto, session);
     }
 
     @PutMapping
-    public MovieDto updateMovie(@Valid @RequestBody final MovieDto requestDto) {
-        return movieService.updateMovie(requestDto);
+    public MovieDto updateMovie(@Valid @RequestBody final MovieDto requestDto, final HttpSession session) {
+        return movieService.updateMovie(requestDto, session);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteMovie(@PathVariable final Long id) {
-        movieService.removeMovie(id);
+    public void deleteMovie(@PathVariable final Long id, final HttpSession session) {
+        movieService.removeMovie(id, session);
     }
 }

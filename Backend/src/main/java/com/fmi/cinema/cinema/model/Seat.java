@@ -20,7 +20,7 @@ public class Seat {
     private boolean isTaken;
 
     @ManyToOne
-    @JoinColumn(name="id")
+    @JoinColumn(name="room_id")
     private Room room;
 
     public Seat() {}

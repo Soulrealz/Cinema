@@ -14,28 +14,31 @@ CREATE TABLE `movies` (
     `year` DATE NOT NULL
 );
 
-create table `rooms` (
-`id` bigint(20) not null auto_increment primary key
+CREATE TABLE `rooms` (
+`id` BIGINT(20) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+`capacity` BIGINT(20) NOT NULL
 );
 
-create table `projections` (
-`id` bigint(20) not null auto_increment primary key,
-`room_id` bigint(20) not null,
-`movie_id` bigint(20) not null,
-`projection_time` datetime not null
+CREATE TABLE `projections` (
+`id` BIGINT(20) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+`room_id` BIGINT(20) NOT NULL,
+`movie_id` BIGINT(20) NOT NULL,
+`projection_time` DATETIME NOT NULL
 );
 
-create table `seats` (
-`id` bigint(20) not null auto_increment primary key,
-`is_taken` boolean not null,
-`room_id` bigint(20) not null
+CREATE TABLE `seats` (
+`id` BIGINT(20) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+`is_taken` BOOLEAN NOT NULL,
+`room_id` BIGINT(20) NOT NULL,
+CONSTRAINT `FK_seats_room_id`
+FOREIGN KEY (`room_id`) REFERENCES `rooms` (`id`) ON UPDATE NO ACTION ON DELETE CASCADE
 );
 
 CREATE TABLE `tickets` (
     `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `user_id` BIGINT(20) NOT NULL,
-    `seat_id` bigINT(20) NOT NULL,
-    `projection_id` bigint(20) not null,
+    `seat_id` BIGINT(20) NOT NULL,
+    `projection_id` BIGINT(20) NOT NULL,
     `bought_on` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     CONSTRAINT `FK_tickets_projection_id`
     FOREIGN KEY (`projection_id`) REFERENCES `projections` (`id`) ON UPDATE NO ACTION ON DELETE CASCADE,
