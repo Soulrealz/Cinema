@@ -15,10 +15,12 @@ public class User
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private final String firstName;
-    private final String lastName;
-    private final String email;
-    private final String password;
+    private String firstName;
+    private String lastName;
+    private String email;
+    private String password;
+
+    public User() {}
 
     public User(RegisterRequestUserDTO user, String hashedPassword)
     {

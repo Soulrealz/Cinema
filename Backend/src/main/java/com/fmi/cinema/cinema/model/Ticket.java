@@ -2,13 +2,13 @@ package com.fmi.cinema.cinema.model;
 
 import org.hibernate.annotations.CreationTimestamp;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import java.time.LocalDateTime;
 
@@ -23,26 +23,23 @@ public class Ticket {
     @JoinColumn(name = "user_id")
     private User user;
 
+    @OneToOne
+    @JoinColumn(name = "seat_id")
+    private Seat seat;
+
     @ManyToOne
-    @JoinColumn(name = "movie_id")
-    private Movie movie;
-
-    @Column
-    private int rowNumber;
-
-    @Column
-    private int seatNumber;
+    @JoinColumn(name = "projection_id")
+    private Projection projection;
 
     @CreationTimestamp
     private LocalDateTime boughtOn;
 
     public Ticket() {}
 
-    public Ticket(User user, Movie movie, int rowNumber, int seatNumber, LocalDateTime boughtOn) {
+    public Ticket(User user, Seat seat, Projection projection, LocalDateTime boughtOn) {
         this.user = user;
-        this.movie = movie;
-        this.rowNumber = rowNumber;
-        this.seatNumber = seatNumber;
+        this.seat = seat;
+        this.projection = projection;
         this.boughtOn = boughtOn;
     }
     public Long getTicketId() {
@@ -53,16 +50,8 @@ public class Ticket {
         return user;
     }
 
-    public Movie getMovie() {
-        return movie;
-    }
-
-    public int getRowNumber() {
-        return rowNumber;
-    }
-
-    public int getSeatNumber() {
-        return seatNumber;
+    public Projection getProjection() {
+        return projection;
     }
 
     public LocalDateTime getBoughtOn() {

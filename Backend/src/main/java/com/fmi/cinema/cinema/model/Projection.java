@@ -1,6 +1,12 @@
 package com.fmi.cinema.cinema.model;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "projections")
@@ -10,18 +16,22 @@ public class Projection {
     private Long id;
 
     @Column
-    private Long room_id;
+    private Long roomId;
 
     @Column
-    private Long movie_id;
+    private Long movieId;
+
+    @Column
+    private LocalDateTime projectionTime;
 
     public Projection() {}
 
-    public Projection(Long id, Long room_id, Long movie_id)
+    public Projection(Long id, Long roomId, Long movieId, LocalDateTime projectionTime)
     {
         this.id = id;
-        this.room_id = room_id;
-        this.movie_id = movie_id;
+        this.roomId = roomId;
+        this.movieId = movieId;
+        this.projectionTime = projectionTime;
     }
 
     public Long getId()
@@ -29,13 +39,18 @@ public class Projection {
         return id;
     }
 
-    public Long getRoom_id()
+    public Long getRoomId()
     {
-        return room_id;
+        return roomId;
     }
 
-    public Long getMovie_id()
+    public Long getMovieId()
     {
-        return movie_id;
+        return movieId;
+    }
+
+    public LocalDateTime getProjectionTime()
+    {
+        return projectionTime;
     }
 }

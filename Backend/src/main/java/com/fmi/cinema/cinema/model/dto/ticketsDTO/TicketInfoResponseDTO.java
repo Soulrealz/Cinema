@@ -4,6 +4,4 @@ import java.time.LocalDateTime;
 
 public record TicketInfoResponseDTO (String userFirstName,
 									 String movieName,
-									 int rowNumber,
-									 int seatNumber,
 									 LocalDateTime boughtOn){}
