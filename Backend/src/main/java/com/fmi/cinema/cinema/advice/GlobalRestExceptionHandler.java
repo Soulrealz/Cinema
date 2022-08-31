@@ -2,6 +2,7 @@ package com.fmi.cinema.cinema.advice;
 
 import com.fmi.cinema.cinema.exceptions.BadRequestException;
 import com.fmi.cinema.cinema.exceptions.MovieAlreadyExistsException;
+import com.fmi.cinema.cinema.exceptions.ProjectionAlreadyExistsException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,6 +31,12 @@ public class GlobalRestExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(MovieAlreadyExistsException.class)
     public ResponseEntity<Object> handleMovieAlreadyExists(MovieAlreadyExistsException e) {
+        final String responseBody = String.format(ERROR_MESSAGE, e.getMessage());
+        return new ResponseEntity<>(responseBody, HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler(ProjectionAlreadyExistsException.class)
+    public ResponseEntity<Object> handleProjectionAlreadyExists(ProjectionAlreadyExistsException e) {
         final String responseBody = String.format(ERROR_MESSAGE, e.getMessage());
         return new ResponseEntity<>(responseBody, HttpStatus.CONFLICT);
     }

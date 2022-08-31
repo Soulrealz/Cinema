@@ -26,12 +26,12 @@ public class Projection {
 
     public Projection() {}
 
-    public Projection(Long id, Long room_id, Long movie_id, LocalDateTime projection_time)
+    public Projection(Long id, Long roomId, Long movieId, LocalDateTime projectionTime)
     {
         this.id = id;
-        this.roomId = room_id;
-        this.movieId = movie_id;
-        this.projectionTime = projection_time;
+        this.roomId = roomId;
+        this.movieId = movieId;
+        this.projectionTime = projectionTime;
     }
 
     public Long getId()
@@ -49,7 +49,7 @@ public class Projection {
         return movieId;
     }
 
-    public LocalDateTime projectionTime()
+    public LocalDateTime getProjectionTime()
     {
         return projectionTime;
     }
