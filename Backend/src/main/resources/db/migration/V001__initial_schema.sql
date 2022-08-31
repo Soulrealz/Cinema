@@ -19,11 +19,16 @@ CREATE TABLE `rooms` (
 `capacity` BIGINT(20) NOT NULL
 );
 
-CREATE TABLE `projections` (
-`id` BIGINT(20) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-`room_id` BIGINT(20) NOT NULL,
-`movie_id` BIGINT(20) NOT NULL,
-`projection_time` DATETIME NOT NULL
+
+create table `projections` (
+`id` bigint(20) not null auto_increment primary key,
+`room_id` bigint(20) not null,
+`movie_id` bigint(20) not null,
+`projection_time` datetime not null,
+CONSTRAINT `FK_projections_room_id`
+FOREIGN KEY (`room_id`) REFERENCES `rooms` (`id`) ON UPDATE NO ACTION ON DELETE CASCADE,
+CONSTRAINT `FK_projections_movie_id`
+FOREIGN KEY (`movie_id`) REFERENCES `movies` (`id`) ON UPDATE NO ACTION ON DELETE CASCADE
 );
 
 CREATE TABLE `seats` (

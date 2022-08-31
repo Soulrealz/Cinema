@@ -4,4 +4,6 @@ import java.time.LocalDateTime;
 
 public record TicketInfoResponseDTO (String userFirstName,
 									 String movieName,
-									 LocalDateTime boughtOn){}
+									 LocalDateTime boughtOn,
+									 Long seatId,
+									 Long projectionId){}
