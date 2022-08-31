@@ -1,13 +1,14 @@
 package com.fmi.cinema.cinema.controller;
 
+import com.fmi.cinema.cinema.model.dto.ticketsDTO.TicketInfoResponseDTO;
 import com.fmi.cinema.cinema.model.dto.usersDTO.LoginRequestDTO;
 import com.fmi.cinema.cinema.model.dto.usersDTO.LoginResponseDTO;
 import com.fmi.cinema.cinema.model.dto.usersDTO.RegisterRequestUserDTO;
 import com.fmi.cinema.cinema.model.dto.usersDTO.RegisterResponseUserDTO;
 import com.fmi.cinema.cinema.service.UsersService;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -48,5 +49,11 @@ public class UsersController
     public void getUserInfo(final HttpSession httpSession)
     {
         usersService.getUserInfo(httpSession);
+    }
+
+    @PostMapping("/newticket/{seatId}/{projectionId}")
+    public TicketInfoResponseDTO createNewTicket(final HttpSession session, final @PathVariable long seatId, final @PathVariable long projectionId)
+    {
+        return usersService.createNewTicket(session, seatId, projectionId);
     }
 }
